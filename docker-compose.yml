@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  database:
+    image: mysql:latest
+    restart: always
+    ports:
+      - 33061:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+      TZ: Asia/Seoul
+    volumes:
+      - ./mysql-log:/var/log
+    platform: linux/x86_64
+    networks:
+      - server_net
+    container_name: dayouki_db
+
+networks:
+  server_net:
+    driver: bridge
+
