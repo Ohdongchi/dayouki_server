@@ -6,8 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -24,11 +22,6 @@ import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
       entities: ['dist/**/*.entity.{js, ts}'],
       synchronize: true,
       namingStrategy: new SnakeNamingStrategy(),
-    }),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      typePaths: ['./**/*.graphql'],
-      playground: false,
     }),
     UserModule,
     AuthModule,
